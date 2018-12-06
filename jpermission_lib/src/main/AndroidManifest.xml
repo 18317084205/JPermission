@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.liang.permission">
+
+    <application>
+        <activity
+            android:name="com.liang.permission.PermissionActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation"
+            android:theme="@style/Theme_Translucent" />
+    </application>
+
+</manifest>
