@@ -1,1 +1,1 @@
-include ':app', ':jpermission_lib'
+include ':app', ':jpermission_lib', ':JPermission_plugin'

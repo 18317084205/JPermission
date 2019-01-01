@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.liang.jaspect'
+apply plugin: 'com.liang.permission'
 apply plugin: 'com.novoda.bintray-release'
 
 def groupName = 'org.liang.library'//组名

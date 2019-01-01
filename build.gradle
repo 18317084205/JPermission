@@ -5,10 +5,15 @@ buildscript {
     repositories {
         google()
         jcenter()
+
+        maven {
+//            url "https://dl.bintray.com/15191851980/maven"
+            url uri('/Users/jianbo/repos')
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath 'org.liang.plugin:aspectjtools:1.0.4'
+        classpath 'org.liang.plugin:JPermission_plugin:1.0.1'
         classpath 'com.novoda:bintray-release:0.9'
 
         // NOTE: Do not place your application dependencies here; they belong

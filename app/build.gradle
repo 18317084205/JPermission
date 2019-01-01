@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.liang.jaspect'
+apply plugin: 'com.liang.permission'
 
 android {
     compileSdkVersion 27

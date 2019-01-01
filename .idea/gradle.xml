@@ -8,6 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/JPermission_plugin" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/jpermission_lib" />
           </set>

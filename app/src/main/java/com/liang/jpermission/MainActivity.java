@@ -7,17 +7,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.liang.permission.PermissionHelper;
 import com.liang.permission.annotation.Permission;
 import com.liang.permission.annotation.PermissionBanned;
 import com.liang.permission.annotation.PermissionDenied;
 
 
 public class MainActivity extends AppCompatActivity {
-
-    private PermissionHelper permissionHelper;
-
-    private String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CALL_PHONE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +24,21 @@ public class MainActivity extends AppCompatActivity {
                 testPermissions();
             }
         });
+
+        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                testPermission();
+            }
+        });
     }
 
-    @Permission(value = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CALL_PHONE})
+    @Permission({Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION})
+    public void testPermission() {
+        Toast.makeText(this, "已获得所有权限", Toast.LENGTH_LONG).show();
+    }
+
+    @Permission({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CALL_PHONE})
     public void testPermissions() {
         Toast.makeText(this, "已获得所有权限", Toast.LENGTH_LONG).show();
     }
