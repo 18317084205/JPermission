@@ -2,6 +2,7 @@ package com.liang.permission;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.util.Log;
 
 import com.liang.permission.annotation.Permission;
 import com.liang.permission.annotation.PermissionBanned;
@@ -41,6 +42,7 @@ public class ResultHelperImp extends ResultHelper {
             return;
         }
 
+        Log.e("aroundJoinPoint", "Permission: " + permission.value()[0]);
         PermissionUtils.go2PermissionRequest(context, permission.value(), joinPoint);
     }
 

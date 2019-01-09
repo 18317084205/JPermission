@@ -1,12 +1,14 @@
 package com.liang.jpermission;
 
 import android.Manifest;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.jianbo.testlibrary.TestActivity;
 import com.liang.permission.annotation.Permission;
 import com.liang.permission.annotation.PermissionBanned;
 import com.liang.permission.annotation.PermissionDenied;
@@ -31,9 +33,17 @@ public class MainActivity extends AppCompatActivity {
                 testPermission();
             }
         });
+
+        findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this, KoActivity.class));
+                startActivity(new Intent(MainActivity.this, TestActivity.class));
+            }
+        });
     }
 
-    @Permission({Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION})
+    @Permission({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
     public void testPermission() {
         Toast.makeText(this, "已获得所有权限", Toast.LENGTH_LONG).show();
     }
@@ -45,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     @PermissionBanned()
     public void permissionBanned(Object permissions) {
-        Log.e("MainActivity", "PermissionBanned: " + ((String[]) permissions).length);
+        Log.e("TestActivity", "PermissionBanned: " + ((String[]) permissions).length);
         String[] p = (String[]) permissions;
         String msg = "已拒绝：";
         for (String permission : p) {
@@ -56,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     @PermissionDenied
     public void permissionDenied(Object permissions) {
-        Log.e("MainActivity", "permissionDenied: " + ((String[]) permissions).length);
+        Log.e("TestActivity", "permissionDenied: " + ((String[]) permissions).length);
         String[] p = (String[]) permissions;
         String msg = "取消申请：";
         for (String permission : p) {

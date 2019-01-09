@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.liang.permission'
 apply plugin: 'com.novoda.bintray-release'
 
 def groupName = 'org.liang.library'//组名
@@ -11,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 2
-        versionName '1.0.1'
+        versionCode 3
+        versionName '1.0.2'
     }
 
     buildTypes {
@@ -30,12 +29,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'org.aspectj:aspectjrt:1.8.9'
 }
 
 publish {
     groupId = "${groupName}"
     artifactId = "${artifactName}"
-    publishVersion = '1.0.1'
+    publishVersion = '1.0.2'
 
     desc = 'permission library for Android'
     website = 'https://github.com/18317084205/JPermission'

@@ -8,9 +8,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/JPermission_plugin" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/aspectJ_plugin" />
             <option value="$PROJECT_DIR$/jpermission_lib" />
+            <option value="$PROJECT_DIR$/libraryb" />
+            <option value="$PROJECT_DIR$/testlibrary" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -1,0 +1,67 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+
+def groupName = 'org.liang.plugin'//组名
+def artifactName = 'aspectj-tools'//项目名
+def versionName = '1.0.2'//版本号
+
+group = "${groupName}"
+version = "${versionName}"
+
+dependencies {
+    implementation gradleApi() //gradle sdk
+    implementation localGroovy() //groovy sdk
+    implementation 'com.android.tools.build:gradle:3.2.1'
+    implementation 'org.aspectj:aspectjtools:1.8.9'
+    implementation 'org.aspectj:aspectjrt:1.8.9'
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('/Users/jianbo/repos'))
+        }
+    }
+}
+
+//task sourcesJar(type: Jar) {
+//    from project.sourceSets.main.groovy.srcDirs
+//    classifier = 'sources'
+//}
+//
+//task javadocJar(type: Jar, dependsOn: groovydoc) {
+//    classifier = 'javadoc'
+//    from groovydoc.destinationDir
+//}
+//
+//artifacts {
+//    archives javadocJar
+//    archives sourcesJar
+//}
+
+//使用 bintray-release 插件
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    groupId = "${groupName}"
+    artifactId = "${artifactName}"
+    publishVersion = "${versionName}"
+
+    //项目描述
+    desc = 'Gradle Plugin for Android'
+    //项目网址，建议github开源库网址
+    website = 'https://github.com/18317084205/JPermission'
+    //bintray 的用户名
+    bintrayUser = BINTRAY_USER
+    //bintray 用户名
+    userOrg = BINTRAY_USER
+    //API Key
+    bintrayKey = BINTRAY_KEY
+    dryRun = false
+}
