@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 3
-        versionName '1.0.2'
+        versionCode 5
+        versionName '1.0.5'
     }
 
     buildTypes {
@@ -35,7 +35,7 @@ dependencies {
 publish {
     groupId = "${groupName}"
     artifactId = "${artifactName}"
-    publishVersion = '1.0.2'
+    publishVersion = '1.0.5'
 
     desc = 'permission library for Android'
     website = 'https://github.com/18317084205/JPermission'

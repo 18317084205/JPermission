@@ -1,1 +1,1 @@
-include ':app', ':jpermission_lib', ':aspectJ_plugin', ':testlibrary', ':libraryb'
+include ':app', ':jpermission_lib', ':testlibrary', ':libraryb'

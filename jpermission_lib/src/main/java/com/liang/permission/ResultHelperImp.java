@@ -42,7 +42,6 @@ public class ResultHelperImp extends ResultHelper {
             return;
         }
 
-        Log.e("aroundJoinPoint", "Permission: " + permission.value()[0]);
         PermissionUtils.go2PermissionRequest(context, permission.value(), joinPoint);
     }
 
