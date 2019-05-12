@@ -5,10 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 
-public class PermissionActivity extends Activity implements Request {
+public class PermissionActivity extends AppCompatActivity implements Request {
 
     public static final String PERMISSION_KEY = "permission_key";
     private PermissionHelper permissionHelper;
@@ -30,7 +31,6 @@ public class PermissionActivity extends Activity implements Request {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         permissions = getIntent().getStringArrayExtra(PERMISSION_KEY);
         if (permissions == null || permissions.length == 0) {
             finish();

@@ -3,6 +3,7 @@ package com.liang.permission;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 
 import com.liang.permission.utils.PermissionUtils;
@@ -39,8 +40,16 @@ public class PermissionHelperImp extends PermissionHelper {
     }
 
     @Override
-    public void requestPermissions(Activity activity, String[] permissions) {
-        ActivityCompat.requestPermissions(activity, permissions, REQUEST_CODE);
+    public void requestPermissions(Object object, String[] permissions) {
+        if (object instanceof PermissionActivity) {
+            ActivityCompat.requestPermissions((PermissionActivity) object, permissions, REQUEST_CODE);
+        }
+
+        if (object instanceof PermissionFragment) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                ((PermissionFragment) object).requestPermissions(permissions, REQUEST_CODE);
+            }
+        }
     }
 
     @Override

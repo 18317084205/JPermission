@@ -1,8 +1,8 @@
 package com.liang.permission;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
-import android.util.Log;
 
 import com.liang.permission.annotation.Permission;
 import com.liang.permission.annotation.PermissionBanned;
@@ -39,6 +39,11 @@ public class ResultHelperImp extends ResultHelper {
         Permission permission = signature.getMethod().getAnnotation(Permission.class);
 
         if (context == null || permission == null) {
+            return;
+        }
+
+        if (context instanceof Activity) {
+            PermissionFragment.injectIfNeededIn((Activity) context, permission.value(), joinPoint);
             return;
         }
 

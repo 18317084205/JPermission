@@ -8,7 +8,7 @@ public abstract class PermissionHelper {
 
     public abstract void checkPermissions(Context activity, String[] permissions, Request listener);
 
-    public abstract void requestPermissions(Activity activity, String[] permissions);
+    public abstract void requestPermissions(Object object, String[] permissions);
 
     public abstract void onRequestPermissionsResult(Activity activity, int requestCode, String[] permissions, int[] grantResults);
 }
