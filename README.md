@@ -6,7 +6,7 @@
 ## 更新
 
 #### v1.0.5
-###### 取消无用日志的打印，精简项目
+###### 精简项目
 
 #### v1.0.2
 ###### 解决在kotlin中使用的问题 感谢大佬的AOP框架[gradle_plugin_android_aspectjx](https://github.com/HujiangTechnology/gradle_plugin_android_aspectjx)
