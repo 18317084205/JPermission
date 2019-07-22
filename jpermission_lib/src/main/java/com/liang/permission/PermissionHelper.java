@@ -1,14 +1,36 @@
 package com.liang.permission;
 
-import android.app.Activity;
 import android.content.Context;
 
-public abstract class PermissionHelper {
-    public static final String TAG = PermissionHelper.class.getSimpleName();
+import com.liang.permission.utils.PermissionUtils;
 
-    public abstract void checkPermissions(Context activity, String[] permissions, Request listener);
+import java.util.ArrayList;
+import java.util.List;
 
-    public abstract void requestPermissions(Object object, String[] permissions);
+public class PermissionHelper {
 
-    public abstract void onRequestPermissionsResult(Activity activity, int requestCode, String[] permissions, int[] grantResults);
+    /**
+     * 判断权限是否存在
+     *
+     * @param permission permission
+     * @return return true if permission exists in SDK version
+     */
+    public static boolean hasPermission(Context context, String permission) {
+        return PermissionUtils.hasSelfPermission(context, permission);
+    }
+
+    public static boolean hasPermission(Context context, String... permissions) {
+        List<String> noPermission = new ArrayList<>();
+        for (int i = 0; i < permissions.length; i++) {
+            if (!hasPermission(context, permissions[i])) {
+                noPermission.add(permissions[i]);
+            }
+        }
+        return noPermission.isEmpty();
+    }
+
+    public static void requestPermission(Context context, String[] permissions, OnPermissionListener permissionListener) {
+        PermissionUtils.go2PermissionRequest(context, permissions, permissionListener);
+    }
+
 }

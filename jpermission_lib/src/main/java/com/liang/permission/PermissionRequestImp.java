@@ -11,7 +11,7 @@ import com.liang.permission.utils.PermissionUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PermissionHelperImp extends PermissionHelper {
+public class PermissionRequestImp extends PermissionRequest {
 
     private static final int REQUEST_CODE = 0x200;
     private static final int PERMISSION_UNTREATED = 1;
@@ -22,8 +22,8 @@ public class PermissionHelperImp extends PermissionHelper {
     private Request request;
 
     @Override
-    public void checkPermissions(Context context, String[] permissions, Request listener) {
-        request = listener;
+    public void checkPermissions(Context context, String[] permissions, Request request) {
+        this.request = request;
         List<String> denied = new ArrayList<>();
         for (String permission : permissions) {
             if (PermissionUtils.permissionExists(permission) && !PermissionUtils.hasSelfPermission(context, permission)) {

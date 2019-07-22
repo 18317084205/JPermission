@@ -3,10 +3,11 @@ package com.liang.permission;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.util.Log;
 
-import com.liang.permission.annotation.Permission;
-import com.liang.permission.annotation.PermissionBanned;
-import com.liang.permission.annotation.PermissionDenied;
+import com.liang.permission.annotation.JPermission;
+import com.liang.permission.annotation.JPermissionBanned;
+import com.liang.permission.annotation.JPermissionDenied;
 import com.liang.permission.utils.PermissionUtils;
 
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -15,10 +16,12 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 
-@Aspect
-public class ResultHelperImp extends ResultHelper {
+import java.util.Arrays;
 
-    @Pointcut("execution(@com.liang.permission.annotation.Permission * *(..))")//方法切入点
+@Aspect
+public class PermissionResultImp extends PermissionResult {
+
+    @Pointcut("execution(@com.liang.permission.annotation.JPermission * *(..))")//方法切入点
     public void requestPermissionMethod() {
     }
 
@@ -36,36 +39,36 @@ public class ResultHelperImp extends ResultHelper {
         }
 
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-        Permission permission = signature.getMethod().getAnnotation(Permission.class);
+        JPermission permission = signature.getMethod().getAnnotation(JPermission.class);
 
         if (context == null || permission == null) {
             return;
         }
 
+        PermissionUtils.release(PermissionUtils.getPermissionOption()
+                .setProceedingJoinPoint(joinPoint)
+                .setPermissions(permission.value())
+                .setPermissionListener(null));
+
         if (context instanceof Activity) {
-            PermissionFragment.injectIfNeededIn((Activity) context, permission.value(), joinPoint);
+            PermissionFragment.injectIfNeededIn((Activity) context);
             return;
         }
-
-        PermissionUtils.go2PermissionRequest(context, permission.value(), joinPoint);
+        PermissionActivity.start(context);
     }
 
     @Override
-    public void onPermissionGranted(ProceedingJoinPoint joinPoint, String[] permissions) {
-        try {
-            joinPoint.proceed();
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
+    public void onPermissionGranted(String[] permissions) {
+        PermissionUtils.requestPermissionsResult();
     }
 
     @Override
-    public void onPermissionDenied(ProceedingJoinPoint joinPoint, String[] permissions) {
-        PermissionUtils.requestPermissionsResult(joinPoint, permissions, PermissionDenied.class);
+    public void onPermissionDenied(String[] permissions) {
+        PermissionUtils.requestPermissionsResult(permissions, JPermissionDenied.class);
     }
 
     @Override
-    public void onPermissionBanned(ProceedingJoinPoint joinPoint, String[] permissions) {
-        PermissionUtils.requestPermissionsResult(joinPoint, permissions, PermissionBanned.class);
+    public void onPermissionBanned(String[] permissions) {
+        PermissionUtils.requestPermissionsResult(permissions, JPermissionBanned.class);
     }
 }

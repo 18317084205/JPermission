@@ -9,9 +9,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.jianbo.testlibrary.TestActivity;
-import com.liang.permission.annotation.Permission;
-import com.liang.permission.annotation.PermissionBanned;
-import com.liang.permission.annotation.PermissionDenied;
+import com.liang.permission.annotation.JPermission;
+import com.liang.permission.annotation.JPermissionBanned;
+import com.liang.permission.annotation.JPermissionDenied;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,17 +43,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Permission({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
+    @JPermission({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
     public void testPermission() {
         Toast.makeText(this, "已获得所有权限", Toast.LENGTH_LONG).show();
     }
 
-    @Permission({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CALL_PHONE})
+    @JPermission({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CALL_PHONE})
     public void testPermissions() {
         Toast.makeText(this, "已获得所有权限", Toast.LENGTH_LONG).show();
     }
 
-    @PermissionBanned()
+    @JPermissionBanned
     public void permissionBanned(Object permissions) {
         Log.e("TestActivity", "PermissionBanned: " + ((String[]) permissions).length);
         String[] p = (String[]) permissions;
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
-    @PermissionDenied
+    @JPermissionDenied
     public void permissionDenied(Object permissions) {
         Log.e("TestActivity", "permissionDenied: " + ((String[]) permissions).length);
         String[] p = (String[]) permissions;

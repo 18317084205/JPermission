@@ -3,7 +3,7 @@
     package="com.jianbo.libraryb">
 
     <application>
-        <activity android:name=".TextbActivity"></activity>
+        <activity android:name=".TestbActivity"></activity>
     </application>
 
 </manifest>
